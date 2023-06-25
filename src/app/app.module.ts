@@ -7,9 +7,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DirectivaComponent } from './directiva/directiva.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ClientesComponent } from './clientes/clientes.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: '/clientes', pathMatch: 'full'},
   {path: 'directivas', component: DirectivaComponent},
+  {path: 'clientes', component: ClientesComponent},
 ];
 
 @NgModule({
@@ -18,6 +21,7 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     DirectivaComponent,
+    ClientesComponent,
   ],
   imports: [
     BrowserModule,

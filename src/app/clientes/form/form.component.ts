@@ -11,9 +11,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
+  
   public cliente: Cliente = {id: 0, nombre: '', apellido: '', email: ''};
   public titulo: string = 'Crear Cliente';
   public msjBoton: string = 'Crear';
+  public errores: string[] = [];
 
   formCliente: FormGroup = this.fb.group({
     id: [''],
@@ -61,12 +63,16 @@ export class FormComponent {
         .subscribe(cliente => {
           this.router.navigate(['/clientes']);
           Swal.fire('Nuevo cliente', `Cliente ${cliente.nombre} creado con éxito!`, 'success');
+        }, err => {
+          this.errores = err.error.errors as string[];
         });
     } else {
       this.clienteService.update(this.cliente)
         .subscribe( cliente => {
           this.router.navigate(['/clientes']);
           Swal.fire('Cliente Actualizado', `Cliente ${cliente.nombre} actualizado con éxito!`, 'success');
+        }, err => {
+          this.errores = err.error.errors as string[];
         });
     }
   }

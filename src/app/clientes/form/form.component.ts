@@ -56,8 +56,6 @@ export class FormComponent {
       email: this.formCliente.get('email')?.value
     };
 
-    console.log(this.cliente);
-
     if(this.cliente.id <= 0) {
       this.clienteService.create(this.cliente)
         .subscribe(cliente => {
